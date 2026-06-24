@@ -1,6 +1,7 @@
 import mlflow
 import pandas as pd
 import numpy as np
+from generate_dummy_data import generate_dummy_training_data
 from sklearn.metrics import root_mean_squared_error
 from sklearn.model_selection import TimeSeriesSplit
 
@@ -74,7 +75,7 @@ def run_benchmark(
 
 
 if __name__ == "__main__":
-    training_data = pd.read_pickle("cached_training_data.pkl")
+    training_data = generate_dummy_training_data()
 
     mlflow.set_tracking_uri(uri="http://localhost:5000")
     if not mlflow.get_experiment_by_name("benchmark_runs"):

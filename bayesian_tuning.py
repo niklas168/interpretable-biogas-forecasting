@@ -15,6 +15,7 @@ import pickle
 import tensorflow as tf
 from pathlib import Path
 
+from generate_dummy_data import generate_dummy_training_data
 from feature_selection import build_config_from_features
 from training import _model_train_mapping
 from preprocessing_utils import create_feature_subset
@@ -352,7 +353,7 @@ def run_bayesian_tuning(
 if __name__ == "__main__":
     from selected_feature_sets import catboost_restricted
 
-    training_data = pd.read_pickle("cached_training_data.pkl")
+    training_data = generate_dummy_training_data()
     grid = build_config_from_features(catboost_restricted, target="prod_act_sum")
     run_bayesian_tuning(
         model_type="CatBoost",

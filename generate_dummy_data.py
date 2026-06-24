@@ -1,7 +1,7 @@
 """Generate dummy data for intrepretml-public.
 
 Produces:
-- cached_training_data.pkl (34321 rows, 245 columns)
+- 34321 rows, 245 columns DataFrame with synthetic biogas portfolio features.
 """
 
 import numpy as np
@@ -222,7 +222,7 @@ def create_window_column(base_series, window_size, agg_type):
 
 
 def generate_dummy_training_data():
-    """Generate cached_training_data.pkl."""
+    """Generate dummy training data."""
     index = pd.date_range('2022-02-01', '2026-01-01', freq='h', tz='CET')
     data = {}
 
@@ -291,11 +291,8 @@ def generate_dummy_training_data():
 
 
 def main():
-    here = Path(__file__).parent
-
-    print("Generating cached_training_data.pkl...")
+    print("Generating dummy data...")
     df_train = generate_dummy_training_data()
-    df_train.to_pickle(here / 'cached_training_data.pkl')
     print(f"  Shape: {df_train.shape}, TZ: {df_train.index.tz}")
 
     print("\nDummy data generation complete!")
